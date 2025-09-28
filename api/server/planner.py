@@ -9,7 +9,8 @@ from pydantic import BaseModel, Field, ValidationError
 vertexai.init(project="teja-sunhack", location="us-central1")
 
 # Use a small/cheap planner model
-PLANNER_MODEL_ID = "gemini-2.5-flash"
+#PLANNER_MODEL_ID = "gemini-2.5-flash"
+PLANNER_MODEL_ID = "gemma-2-2b-it"  # even cheaper, still capable
 
 # Registry of domain ➜ target SLM (you can expand this easily)
 DOMAIN_REGISTRY = {

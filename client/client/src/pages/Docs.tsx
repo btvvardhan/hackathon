@@ -1,4 +1,6 @@
 import { motion } from "framer-motion"
+import { Button } from "@/components/ui/button"
+import { Link } from "react-router-dom"
 
 export default function Docs() {
   return (
@@ -40,7 +42,7 @@ export default function Docs() {
             <li><span className="text-emerald-400 font-medium">X-API-Key</span> — Your API key</li>
             <li><span className="text-emerald-400 font-medium">X-User-Email</span> — Identifies the user</li>
             <li><span className="text-emerald-400 font-medium">X-User-Domain</span> — Business unit / team</li>
-            <li><span className="text-emerald-400 font-medium">X-User-Clearance</span> — Clearance level (0-4)</li>
+            <li><span className="text-emerald-400 font-medium">X-User-Clearance</span> — Clearance level (0–4)</li>
           </ul>
 
           <h3 className="text-lg font-semibold text-white mt-6">Request Body</h3>
@@ -85,9 +87,33 @@ export default function Docs() {
         </motion.section>
       </main>
 
+      {/* Footer CTA */}
+      <motion.section
+        className="py-20 bg-gradient-to-r from-emerald-600 to-teal-500 text-center text-white space-y-6"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <h2 className="text-3xl font-bold">Ready to try it out?</h2>
+        <p className="text-emerald-100">Jump into the console or head back to the docs anytime.</p>
+        <div className="flex justify-center gap-4">
+          <Link to="/console">
+            <Button className="px-8 py-5 text-sm bg-black text-emerald-400 border-2 border-emerald-400 hover:bg-emerald-400 hover:text-black transition">
+              Open Console
+            </Button>
+          </Link>
+          <Link to="/">
+            <Button className="px-8 py-5 text-sm bg-white text-emerald-600 hover:bg-gray-100 transition">
+              Back to Home
+            </Button>
+          </Link>
+        </div>
+      </motion.section>
+
       {/* Footer */}
-      <footer className="py-10 text-center text-sm text-gray-400 border-t border-gray-800">
-        © {new Date().getFullYear()} RAG Console · Built with ❤️ at Hackathon
+      <footer className="py-8 text-center text-sm text-gray-400 bg-black border-t border-emerald-800">
+        © {new Date().getFullYear()} RAG Console · Built with ⚡ at Hackathon
       </footer>
     </div>
   )

@@ -2,6 +2,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
 
 export default function Contact() {
   return (
@@ -61,7 +62,7 @@ export default function Contact() {
 
       {/* Footer CTA */}
       <motion.footer
-        className="mt-auto py-16 bg-gradient-to-r from-emerald-600 to-teal-500 text-center"
+        className="mt-auto py-16 bg-gradient-to-r from-emerald-600 to-teal-500 text-center space-y-6"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -70,6 +71,18 @@ export default function Contact() {
         <p className="mt-2 text-base text-emerald-100">
           Your message goes straight to our team — no bots, no delays.
         </p>
+        <div className="flex justify-center gap-4">
+          <Link to="/console">
+            <Button className="px-8 py-4 text-sm bg-black text-emerald-400 border-2 border-emerald-400 rounded-lg hover:bg-emerald-400 hover:text-black transition">
+              Open Console
+            </Button>
+          </Link>
+          <Link to="/">
+            <Button className="px-8 py-4 text-sm bg-white text-emerald-600 hover:bg-gray-100 rounded-lg transition">
+              Back to Home
+            </Button>
+          </Link>
+        </div>
       </motion.footer>
     </div>
   )

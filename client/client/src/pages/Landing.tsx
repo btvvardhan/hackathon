@@ -78,12 +78,19 @@ export default function Landing() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
         >
-          <Button className="px-10 py-6 text-lg font-semibold bg-gradient-to-r from-emerald-500 to-teal-400 text-black hover:opacity-90 shadow-lg shadow-emerald-500/30">
-            Try Console
-          </Button>
-          <Button variant="outline" className="px-10 py-6 text-lg border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-black">
-            Read Docs
-          </Button>
+          <Link to="/console">
+            <Button className="px-10 py-6 text-lg font-semibold bg-gradient-to-r from-emerald-500 to-teal-400 text-black hover:opacity-90 shadow-lg shadow-emerald-500/30">
+              Try Console
+            </Button>
+          </Link>
+          <Link to="/docs">
+            <Button
+              variant="outline"
+              className="px-10 py-6 text-lg border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-black"
+            >
+              Read Docs
+            </Button>
+          </Link>
         </motion.div>
       </header>
 

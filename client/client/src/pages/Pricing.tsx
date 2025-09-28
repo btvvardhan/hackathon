@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
 
 export default function Pricing() {
   const plans = [
@@ -62,15 +63,17 @@ export default function Pricing() {
                   >
                     {p.price}
                   </p>
-                  <Button
-                    className={`mt-4 w-full ${
-                      p.tier === "Enterprise"
-                        ? "bg-gradient-to-r from-emerald-500 to-teal-400 text-black hover:opacity-90"
-                        : "bg-emerald-500 text-black hover:bg-emerald-400"
-                    }`}
-                  >
-                    {p.tier === "Enterprise" ? "Contact Sales" : "Get Started"}
-                  </Button>
+                  <Link to={p.tier === "Enterprise" ? "/contact" : "/console"} className="w-full">
+                    <Button
+                      className={`mt-4 w-full ${
+                        p.tier === "Enterprise"
+                          ? "bg-gradient-to-r from-emerald-500 to-teal-400 text-black hover:opacity-90"
+                          : "bg-emerald-500 text-black hover:bg-emerald-400"
+                      }`}
+                    >
+                      {p.tier === "Enterprise" ? "Contact Sales" : "Get Started"}
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </motion.div>
@@ -94,9 +97,11 @@ export default function Pricing() {
           animate={{ scale: [1, 1.05, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <Button className="px-10 py-7 text-lg bg-black text-emerald-400 border-2 border-emerald-400 hover:bg-emerald-400 hover:text-black transition">
-            Launch Console
-          </Button>
+          <Link to="/console">
+            <Button className="px-10 py-7 text-lg bg-black text-emerald-400 border-2 border-emerald-400 hover:bg-emerald-400 hover:text-black transition">
+              Launch Console
+            </Button>
+          </Link>
         </motion.div>
       </motion.section>
 

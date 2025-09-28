@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_API_BASE_URL ?? "https://rag-api-589329822647.us-central1.run.app"
+const BASE = "https://rag-api-589329822647.us-central1.run.app"
 
 export async function runQuery(
   headers: {

@@ -1,4 +1,3 @@
-Here’s a clean, copy-pasteable **README.md** you can drop into your repo.
 
 ---
 
@@ -290,10 +289,3 @@ X-User-Clearance: 1|2|3
 
 ---
 
-## License
-
-MIT (or your preferred license)
-
----
-
-If you want, I can tailor this to your Google Doc’s exact wording (sections like Problem, Solution, Architecture, etc.) and add CI/CD steps (Cloud Build triggers) or a one-click `make deploy` flow.

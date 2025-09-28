@@ -289,3 +289,33 @@ X-User-Clearance: 1|2|3
 
 ---
 
+## Inspiration
+
+## What it does
+
+**Inspiration**
+In September 2025, when Albania introduced “Diella,” an AI cabinet “minister” to oversee public procurement, it sparked a question: could we apply a similar idea inside an organization—not to replace people, but to guarantee policy-aligned, auditable decisions? That story pushed us to design a system where access is governed by domain and clearance, and where the AI only sees what it’s allowed to see. ([Reuters][1])
+
+**What clicked for us**
+
+* **Policy-first access:** We wanted *hierarchical* knowledge access (domain + clearance), enforced at retrieval time so generation never sees disallowed context.
+* **Efficient by design:** Use a tiny planner SLM (Gemma-2 2B-IT) to route requests and reserve large models only when needed; pair it with cost-efficient Gemini tiers (e.g., 2.5 Flash/Flash-Lite) for most answers. ([Google Cloud][2])
+* **Transparent & auditable:** Every answer is grounded in allowed documents with citations, mirroring the “procurement transparency” goal that inspired us—just adapted to enterprise RAG. ([Reuters][1])
+
+**How that shaped our build**
+
+* Planner SLM → picks model/tone (cheap when possible, powerful when necessary). ([Google Cloud][2])
+* Metadata-gated retrieval → domain/clearance enforced before generation.
+* Gemini generation → concise, cited responses from only authorized context.
+
+[1]: https://www.reuters.com/technology/albania-appoints-ai-bot-minister-tackle-corruption-2025-09-11/?utm_source=chatgpt.com "Albania appoints AI bot as minister to tackle corruption"
+[2]: https://cloud.google.com/blog/products/ai-machine-learning/performance-deepdive-of-gemma-on-google-cloud?utm_source=chatgpt.com "Performance deep dive of Gemma on Google Cloud"
+
+
+## Challenges we ran into
+
+## Accomplishments that we're proud of
+
+## What we learned
+
+## What's next for Sunhack_ASU

@@ -291,7 +291,6 @@ X-User-Clearance: 1|2|3
 
 ## Inspiration
 
-## What it does
 
 **Inspiration**
 In September 2025, when Albania introduced “Diella,” an AI cabinet “minister” to oversee public procurement, it sparked a question: could we apply a similar idea inside an organization—not to replace people, but to guarantee policy-aligned, auditable decisions? That story pushed us to design a system where access is governed by domain and clearance, and where the AI only sees what it’s allowed to see. ([Reuters][1])
@@ -312,10 +311,3 @@ In September 2025, when Albania introduced “Diella,” an AI cabinet “minist
 [2]: https://cloud.google.com/blog/products/ai-machine-learning/performance-deepdive-of-gemma-on-google-cloud?utm_source=chatgpt.com "Performance deep dive of Gemma on Google Cloud"
 
 
-## Challenges we ran into
-
-## Accomplishments that we're proud of
-
-## What we learned
-
-## What's next for Sunhack_ASU

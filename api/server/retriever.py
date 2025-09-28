@@ -143,9 +143,15 @@ def search(q: str, domain: str, clearance: int, k: int = 8) -> List[Dict[str, An
             "distance": n.distance,
         })
 
-    # 4) Domain + clearance filter (your original behavior)
-    same = [it for it in items if it.get("domain_meta") == domain and it["clearance_min"] <= int(clearance)]
-    return same if same else [it for it in items if it["clearance_min"] <= int(clearance)]
+    # # 4) Domain + clearance filter (your original behavior)
+    # same = [it for it in items if it.get("domain_meta") == domain and it["clearance_min"] <= int(clearance)]
+    # return same if same else [it for it in items if it["clearance_min"] <= int(clearance)]
+
+
+    same = [it for it in items
+            if it.get("domain_meta") == domain and it["clearance_min"] <= int(clearance)]
+    return same  # no cross-domain fallback
+
 
 def inspect_neighbors(q: str, k: int = 5) -> Dict[str, Any]:
     vec = embed_query(q)

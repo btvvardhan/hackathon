@@ -14,6 +14,7 @@ EMBED_MODEL = os.getenv("EMBED_MODEL", "text-embedding-004")
 API_ENDPOINT = os.getenv("ME_API_HOST", "257828499.us-central1-589329822647.vdb.vertexai.goog")
 INDEX_ENDPOINT = os.getenv("ME_INDEX_ENDPOINT", "projects/589329822647/locations/us-central1/indexEndpoints/1398598581740371968")
 DEPLOYED_ID   = os.getenv("ME_DEPLOYED_INDEX_ID", "sunhack_deploy_1759016114032")
+DEPLOYED_INDEX_ID = "sunhack_deploy_1759016114032"
 
 # --- Init once ---
 vertex_init(project=PROJECT, location=LOCATION)
@@ -108,7 +109,7 @@ def search(q: str, domain: str, clearance: int, k: int = 8) -> List[Dict[str, An
         index_endpoint=INDEX_ENDPOINT,
         deployed_index_id=DEPLOYED_INDEX_ID,
         queries=[aiplatform_v1.FindNeighborsRequest.Query(
-            datapoint=aiplatform_v1.IndexDatapoint(feature_vector=qvec),
+            datapoint=aiplatform_v1.IndexDatapoint(feature_vector=vec),
             neighbor_count=10
         )],
         return_full_datapoint=True,   # <-- make sure this is True

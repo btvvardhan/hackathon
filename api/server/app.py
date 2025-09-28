@@ -62,8 +62,8 @@ Answer with clear, concise steps and include citations."""
 def health():
     return {"status": "ok"}
 
-@app.post("/query")
-def query(body: QueryIn, user=Depends(dev_auth)):
+#@app.post("/query")
+#def query(body: QueryIn, user=Depends(dev_auth)):
     q = body.query.strip()
     if not q:
         return {"answer": "Please provide a question.", "citations": [], "route": {}, "domain": user["domain"], "clearance": user["clearance"]}
@@ -170,3 +170,48 @@ def raw_chunks(q: str = Query(...), k: int = Query(5)):
     return inspect_neighbors(q, k=k)
 
 
+@app.post("/query")
+def query(body: QueryIn, user=Depends(dev_auth)):
+    q = body.query.strip()
+    if not q:
+        return {
+            "answer": "Please provide a question.",
+            "citations": [],
+            "route": {},
+            "domain": user["domain"],
+            "clearance": user["clearance"],
+        }
+
+    # 1) Retrieve filtered chunks
+    chunks = search(q, user["domain"], user["clearance"], k=8)
+
+    # 2) Route to model/params
+    route = pick_model(user["domain"], q)
+    model_id = route.get("model_id", "gemini-2.5-flash")
+    temperature = float(route.get("temperature", 0.2))
+    max_tokens = int(route.get("max_output_tokens", 1024))
+
+    # 3) LLM call
+    prompt = build_prompt(chunks, user["domain"], q)
+    model = GenerativeModel(model_id)
+    cfg = GenerationConfig(temperature=temperature, max_output_tokens=max_tokens)
+    resp = model.generate_content(prompt, generation_config=cfg)
+    text = resp.candidates[0].content.parts[0].text if resp and resp.candidates else "I couldn't generate a response."
+
+    # 4) Citations
+    citations = []
+    for i, c in enumerate(chunks[:6], start=1):
+        citations.append({
+            "index": i,
+            "doc_id": c.get("doc_id"),
+            "section": c.get("section"),
+            "distance": c.get("distance"),
+        })
+
+    return {
+        "answer": text,
+        "citations": citations,
+        "route": {"model_id": model_id, "temperature": temperature, "max_output_tokens": max_tokens},
+        "domain": user["domain"],
+        "clearance": user["clearance"],
+    }
